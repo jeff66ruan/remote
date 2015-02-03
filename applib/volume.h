@@ -1,9 +1,8 @@
 /** \file
  * Copyright:
  *
- * Description: This simulates the hardware - TV sets
+ * Description: This simulates the volume for a TV set
  *
- * preferable each hardware component can be in its own module
  */
 
 #ifndef D_volume_H
