@@ -4,6 +4,8 @@ extern "C" {
 #include "remoteControlMenu.h"
 #include "volume.h"
 #include "opmode.h"
+#include "bright.h"
+#include "channel.h"
 }
 
 TEST_GROUP(REMOTECONTROLMENU)
@@ -55,11 +57,46 @@ TEST(REMOTECONTROLMENU, VolumeActionsOnRemoteControlMenuIsDoneSuccessfully)
   LONGS_EQUAL(10, volumeRead());
 }
 
+TEST(REMOTECONTROLMENU, BrightActionsOnRemoteControlMenuIsDoneSuccessfully)
+{
+  remoteControlMenuInit();
+
+  // move to the action node of brightness
+  remoteControlMenuNext();
+  remoteControlMenuDown();
+  remoteControlMenuDisplay();
+
+  brightReset();
+  remoteControlMenuNext();
+  LONGS_EQUAL(51, brightRead());
+  remoteControlMenuPrev();
+  LONGS_EQUAL(50, brightRead());
+}
+
+TEST(REMOTECONTROLMENU, ChannelActionsOnRemoteControlMenuIsDoneSuccessfully)
+{
+  remoteControlMenuInit();
+
+  // move to the action node of brightness
+  remoteControlMenuNext();
+  remoteControlMenuNext();
+  remoteControlMenuDown();
+  remoteControlMenuDisplay();
+
+  channelReset();
+  remoteControlMenuNext();
+  LONGS_EQUAL(4, channelRead());
+  remoteControlMenuPrev();
+  LONGS_EQUAL(3, channelRead());
+}
+
 TEST(REMOTECONTROLMENU, OpModeActionsOnRemoteControlMenuIsDoneSuccessfully)
 {
   remoteControlMenuInit();
 
-  // move to the action node of volume
+  // move to the action node of operating mode
+  remoteControlMenuNext();
+  remoteControlMenuNext();
   remoteControlMenuNext();
   remoteControlMenuDown();
   remoteControlMenuDisplay();

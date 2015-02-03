@@ -2,6 +2,8 @@
 #include "menu.h"
 #include "volume.h"
 #include "opmode.h"
+#include "bright.h"
+#include "channel.h"
 #include <stdio.h>
 #include <assert.h>
 
@@ -17,6 +19,10 @@ static void volumeActionOnNext(menu_t **menu);
 static void volumeActionOnPrev(menu_t **menu);
 static void opmodeActionOnNext(menu_t **menu);
 static void opmodeActionOnPrev(menu_t **menu);
+static void brightActionOnNext(menu_t **menu);
+static void brightActionOnPrev(menu_t **menu);
+static void channelActionOnNext(menu_t **menu);
+static void channelActionOnPrev(menu_t **menu);
 
 static void volumeActionOnNext(menu_t **menu)
 {
@@ -50,6 +56,29 @@ static void opmodeActionOnPrev(menu_t **menu)
   }
 }
 
+static void brightActionOnNext(menu_t **menu)
+{
+  assert(menu);
+  printf("Brightness is %d\n", brightNext());
+}
+
+static void brightActionOnPrev(menu_t **menu)
+{
+  assert(menu);
+  printf("Brightness is %d\n", brightPrev());
+}
+
+static void channelActionOnNext(menu_t **menu)
+{
+  assert(menu);
+  printf("Channel is %d\n", channelNext());
+}
+
+static void channelActionOnPrev(menu_t **menu)
+{
+  assert(menu);
+  printf("Channel is %d\n", channelPrev());
+}
 
 void remoteControlMenuInit(void)
 {
@@ -63,13 +92,29 @@ void remoteControlMenuInit(void)
   actions[0].onPrev = volumeActionOnPrev;
   menuInsertChildTail(&levelOne[0], &actions[0]);
 
-  /* operation mode */
-  menuInit(&levelOne[1], "Operating mode - On/Standby");
+  /* Bright */
+  menuInit(&levelOne[1], "Brightness - 0 to 100%");
   menuInsertChildTail(&root, &levelOne[1]);
-  menuInit(&actions[1], "Press Left and Right to Change Operating mode");
-  actions[1].onNext = opmodeActionOnNext;
-  actions[1].onPrev = opmodeActionOnPrev;
+  menuInit(&actions[1], "Press Left and Right to Change Brightness");
+  actions[1].onNext = brightActionOnNext;
+  actions[1].onPrev = brightActionOnPrev;
   menuInsertChildTail(&levelOne[1], &actions[1]);
+
+  /* channel */
+  menuInit(&levelOne[2], "Channel - 1 to 5");
+  menuInsertChildTail(&root, &levelOne[2]);
+  menuInit(&actions[2], "Press Left and Right to Change Channel");
+  actions[2].onNext = channelActionOnNext;
+  actions[2].onPrev = channelActionOnPrev;
+  menuInsertChildTail(&levelOne[2], &actions[2]);
+
+  /* operation mode */
+  menuInit(&levelOne[3], "Operating mode - On/Standby");
+  menuInsertChildTail(&root, &levelOne[3]);
+  menuInit(&actions[3], "Press Left and Right to Change Operating mode");
+  actions[3].onNext = opmodeActionOnNext;
+  actions[3].onPrev = opmodeActionOnPrev;
+  menuInsertChildTail(&levelOne[3], &actions[3]);
 
   pcurMenu = &levelOne[0];
 }
