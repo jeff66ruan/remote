@@ -1,7 +1,7 @@
 /** \file
  * Copyright:
  *
- * Description: This simulates the volume for a TV set
+ * Description: This simulates the brightness for a TV set
  *
  */
 

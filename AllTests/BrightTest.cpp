@@ -16,7 +16,7 @@ TEST_GROUP(BRIGHT)
   }
 };
 
-TEST(BRIGHT, BrightHasDefaultValue10)
+TEST(BRIGHT, BrightHasDefaultValue50)
 {
   LONGS_EQUAL(50, brightRead());
 }
@@ -33,7 +33,7 @@ TEST(BRIGHT, BrightIsDecreasedbyOneSuccessfully)
   LONGS_EQUAL(48, brightPrev());
 }
 
-TEST(BRIGHT, BrightIsAlwaysInTheRangeOf0to40)
+TEST(BRIGHT, BrightIsAlwaysInTheRangeOf0to100)
 {
   int i;
   for (i = 0; i <100; i++) brightNext();
