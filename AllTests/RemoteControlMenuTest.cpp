@@ -2,7 +2,8 @@
 
 extern "C" {
 #include "remoteControlMenu.h"
-#include "hardware.h"
+#include "volume.h"
+#include "opmode.h"
 }
 
 TEST_GROUP(REMOTECONTROLMENU)

@@ -1,6 +1,7 @@
 #include "remoteControlMenu.h"
 #include "menu.h"
-#include "hardware.h"
+#include "volume.h"
+#include "opmode.h"
 #include <stdio.h>
 #include <assert.h>
 

@@ -15,12 +15,6 @@ TEST_GROUP(MENU)
   }
 };
 
-TEST(MENU, AEmptyMenuIsCreated)
-{
-  menu_t menu;
-  menuInit(&menu, "");
-}
-
 TEST(MENU, AMenuHavingOneSubMenuIsCreated)
 {
   menu_t menu_0;

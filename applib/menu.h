@@ -43,12 +43,36 @@ extern void menuInsertTail(menu_t *menu, menu_t *newMenu);
  */
 extern void menuInsertChildTail(menu_t *parent, menu_t *child);
 
+/**
+ * It returns the pointer of the input menu node's child menu node
+ * @param menu the input menu node
+ * @return the pointer of the input menu node's child menu node,
+ * NULL if the input menu node hasn't any child
+ */
 extern menu_t*  menuChild(menu_t *menu);
 
+/**
+ * It returns the pointer of the input menu node's parent menu node
+ * @param menu the input menu node
+ * @return the pointer of the input menu node's parent menu node,
+ * NULL if the input menu node hasn't a parent
+ */
 extern menu_t*  menuParent(menu_t *menu);
 
+/**
+ * It returns the pointer of the input menu node's next sibling menu node
+ * @param menu the input menu node
+ * @return the pointer of the input menu node's next sibling menu node,
+ * NULL if the input menu node hasn't a next sibling
+ */
 extern menu_t*  menuNext(menu_t *menu);
 
+/**
+ * It returns the pointer of the input menu node's prev sibling menu node
+ * @param menu the input menu node
+ * @return the pointer of the input menu node's prev sibling menu node,
+ * NULL if the input menu node hasn't a prev sibling
+ */
 extern menu_t*  menuPrev(menu_t *menu);
 
 #endif
