@@ -138,7 +138,7 @@ void remoteControlMenuDisplay(void)
     iter->onDisplay(iter);
     iter = iter->next;
   }
-  printf("Press the button: ");
+  printf("Press the button (l/r/u/d): ");
 }
 
 void remoteControlMenuNext(void)
