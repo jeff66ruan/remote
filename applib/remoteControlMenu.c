@@ -15,69 +15,69 @@ static menu_t actions[LEVEL_ONE_AMOUNT];
 
 static menu_t *pcurMenu = NULL;
 
-static void volumeActionOnNext(menu_t **menu);
-static void volumeActionOnPrev(menu_t **menu);
-static void opmodeActionOnNext(menu_t **menu);
-static void opmodeActionOnPrev(menu_t **menu);
-static void brightActionOnNext(menu_t **menu);
-static void brightActionOnPrev(menu_t **menu);
-static void channelActionOnNext(menu_t **menu);
-static void channelActionOnPrev(menu_t **menu);
+static void volumeActionOnRight(menu_t **menu);
+static void volumeActionOnLeft(menu_t **menu);
+static void opmodeActionOnRight(menu_t **menu);
+static void opmodeActionOnLeft(menu_t **menu);
+static void brightActionOnRight(menu_t **menu);
+static void brightActionOnLeft(menu_t **menu);
+static void channelActionOnRight(menu_t **menu);
+static void channelActionOnLeft(menu_t **menu);
 
-static void volumeActionOnNext(menu_t **menu)
+static void volumeActionOnRight(menu_t **menu)
 {
   assert(menu);
-  printf("Volume is %d\n", volumeNext());
+  printf("Volume is %d\n", volumeRight());
 }
 
-static void volumeActionOnPrev(menu_t **menu)
+static void volumeActionOnLeft(menu_t **menu)
 {
   assert(menu);
-  printf("Volume is %d\n", volumePrev());
+  printf("Volume is %d\n", volumeLeft());
 }
 
-static void opmodeActionOnNext(menu_t **menu)
+static void opmodeActionOnRight(menu_t **menu)
 {
   assert(menu);
-  if (opmodeNext()) {
+  if (opmodeRight()) {
     printf("TV is on\n");
   } else {
     printf("TV is off\n");
   }
 }
 
-static void opmodeActionOnPrev(menu_t **menu)
+static void opmodeActionOnLeft(menu_t **menu)
 {
   assert(menu);
-  if (opmodePrev()) {
+  if (opmodeLeft()) {
     printf("TV is on\n");
   } else {
     printf("TV is off\n");
   }
 }
 
-static void brightActionOnNext(menu_t **menu)
+static void brightActionOnRight(menu_t **menu)
 {
   assert(menu);
-  printf("Brightness is %d\n", brightNext());
+  printf("Brightness is %d\n", brightRight());
 }
 
-static void brightActionOnPrev(menu_t **menu)
+static void brightActionOnLeft(menu_t **menu)
 {
   assert(menu);
-  printf("Brightness is %d\n", brightPrev());
+  printf("Brightness is %d\n", brightLeft());
 }
 
-static void channelActionOnNext(menu_t **menu)
+static void channelActionOnRight(menu_t **menu)
 {
   assert(menu);
-  printf("Channel is %d\n", channelNext());
+  printf("Channel is %d\n", channelRight());
 }
 
-static void channelActionOnPrev(menu_t **menu)
+static void channelActionOnLeft(menu_t **menu)
 {
   assert(menu);
-  printf("Channel is %d\n", channelPrev());
+  printf("Channel is %d\n", channelLeft());
 }
 
 void remoteControlMenuInit(void)
@@ -88,32 +88,32 @@ void remoteControlMenuInit(void)
   menuInit(&levelOne[0], "Volume - 0 to 40");
   menuInsertChildTail(&root, &levelOne[0]);
   menuInit(&actions[0], "Press Left and Right to Change Volume");
-  actions[0].onNext = volumeActionOnNext;
-  actions[0].onPrev = volumeActionOnPrev;
+  actions[0].onRight = volumeActionOnRight;
+  actions[0].onLeft = volumeActionOnLeft;
   menuInsertChildTail(&levelOne[0], &actions[0]);
 
   /* Bright */
   menuInit(&levelOne[1], "Brightness - 0 to 100%");
   menuInsertChildTail(&root, &levelOne[1]);
   menuInit(&actions[1], "Press Left and Right to Change Brightness");
-  actions[1].onNext = brightActionOnNext;
-  actions[1].onPrev = brightActionOnPrev;
+  actions[1].onRight = brightActionOnRight;
+  actions[1].onLeft = brightActionOnLeft;
   menuInsertChildTail(&levelOne[1], &actions[1]);
 
   /* channel */
   menuInit(&levelOne[2], "Channel - 1 to 5");
   menuInsertChildTail(&root, &levelOne[2]);
   menuInit(&actions[2], "Press Left and Right to Change Channel");
-  actions[2].onNext = channelActionOnNext;
-  actions[2].onPrev = channelActionOnPrev;
+  actions[2].onRight = channelActionOnRight;
+  actions[2].onLeft = channelActionOnLeft;
   menuInsertChildTail(&levelOne[2], &actions[2]);
 
   /* operation mode */
   menuInit(&levelOne[3], "Operating mode - On/Standby");
   menuInsertChildTail(&root, &levelOne[3]);
   menuInit(&actions[3], "Press Left and Right to Change Operating mode");
-  actions[3].onNext = opmodeActionOnNext;
-  actions[3].onPrev = opmodeActionOnPrev;
+  actions[3].onRight = opmodeActionOnRight;
+  actions[3].onLeft = opmodeActionOnLeft;
   menuInsertChildTail(&levelOne[3], &actions[3]);
 
   pcurMenu = &levelOne[0];
@@ -121,7 +121,7 @@ void remoteControlMenuInit(void)
 
 static menu_t* remoteControlMenuFirst(menu_t *menu)
 {
-  while(menu->prev) menu = menu->prev;
+  while(menu->left) menu = menu->left;
   return menu;
 }
 
@@ -136,19 +136,19 @@ void remoteControlMenuDisplay(void)
       printf("-> ");
     }
     iter->onDisplay(iter);
-    iter = iter->next;
+    iter = iter->right;
   }
   printf("Press the button (l/r/u/d): ");
 }
 
-void remoteControlMenuNext(void)
+void remoteControlMenuRight(void)
 {
-  pcurMenu->onNext(&pcurMenu);
+  pcurMenu->onRight(&pcurMenu);
 }
 
-void remoteControlMenuPrev(void)
+void remoteControlMenuLeft(void)
 {
-  pcurMenu->onPrev(&pcurMenu);
+  pcurMenu->onLeft(&pcurMenu);
 }
 
 void remoteControlMenuDown(void)

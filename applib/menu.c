@@ -2,21 +2,21 @@
 #include <stdio.h>
 
 static bool menuHasChild(menu_t *menu);
-static void defaultOnNext(menu_t **menu);
-static void defaultOnPrev(menu_t **menu);
+static void defaultOnRight(menu_t **menu);
+static void defaultOnLeft(menu_t **menu);
 static void defaultOnUp(menu_t **menu);
 static void defaultOnDown(menu_t **menu);
 
-static void defaultOnNext(menu_t **menu)
+static void defaultOnRight(menu_t **menu)
 {
-  if ((*menu)->next)
-    *menu = (*menu)->next;
+  if ((*menu)->right)
+    *menu = (*menu)->right;
 }
 
-static void defaultOnPrev(menu_t **menu)
+static void defaultOnLeft(menu_t **menu)
 {
-  if ((*menu)->prev)
-    *menu = (*menu)->prev;
+  if ((*menu)->left)
+    *menu = (*menu)->left;
 }
 
 static void defaultOnUp(menu_t **menu)
@@ -41,10 +41,10 @@ void menuInit(menu_t *menu, const char *text)
   menu->text = text;
   menu->child = NULL;
   menu->parent = NULL;
-  menu->next = NULL;
-  menu->prev = NULL;
-  menu->onNext = defaultOnNext;
-  menu->onPrev = defaultOnPrev;
+  menu->right = NULL;
+  menu->left = NULL;
+  menu->onRight = defaultOnRight;
+  menu->onLeft = defaultOnLeft;
   menu->onUp = defaultOnUp;
   menu->onDown = defaultOnDown;
   menu->onDisplay = defaultOnDisplay;
@@ -63,10 +63,10 @@ static bool menuHasChild(menu_t *menu)
 void menuInsertTail(menu_t *menu, menu_t *newMenu)
 {
   menu_t *cur = menu;
-  while(cur->next) cur = cur->next;
-  cur->next = newMenu;
-  newMenu->prev = cur;
-  newMenu->next = NULL;
+  while(cur->right) cur = cur->right;
+  cur->right = newMenu;
+  newMenu->left = cur;
+  newMenu->right = NULL;
   newMenu->parent = menu->parent;
   /* no change to child because a series of menu can be insert */
 }
@@ -76,8 +76,8 @@ void menuInsertChildTail(menu_t *parent, menu_t *child)
   if (!menuHasChild(parent)) {
     parent->child = child;
     child->parent = parent;
-    child->next = NULL;
-    child->prev = NULL;
+    child->right = NULL;
+    child->left = NULL;
   } else {
     menuInsertTail(parent->child, child);
   }
@@ -93,12 +93,12 @@ menu_t*  menuParent(menu_t *menu)
   return menu->parent;
 }
 
-menu_t*  menuNext(menu_t *menu)
+menu_t*  menuRight(menu_t *menu)
 {
-  return menu->next;
+  return menu->right;
 }
 
-menu_t*  menuPrev(menu_t *menu)
+menu_t*  menuLeft(menu_t *menu)
 {
-  return menu->prev;
+  return menu->left;
 }

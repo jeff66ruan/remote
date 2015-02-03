@@ -41,10 +41,10 @@ TEST(MENU, AMenuHavingTwoSubMenusIsCreated)
   POINTERS_EQUAL(&menu_0_0, menuChild(&menu_0));
   POINTERS_EQUAL(&menu_0, menuParent(&menu_0_0));
   POINTERS_EQUAL(&menu_0, menuParent(&menu_0_1));
-  POINTERS_EQUAL(&menu_0_1, menuNext(&menu_0_0));
-  POINTERS_EQUAL(NULL, menuNext(&menu_0_1));
-  POINTERS_EQUAL(&menu_0_0, menuPrev(&menu_0_1));
-  POINTERS_EQUAL(NULL, menuPrev(&menu_0_0));
+  POINTERS_EQUAL(&menu_0_1, menuRight(&menu_0_0));
+  POINTERS_EQUAL(NULL, menuRight(&menu_0_1));
+  POINTERS_EQUAL(&menu_0_0, menuLeft(&menu_0_1));
+  POINTERS_EQUAL(NULL, menuLeft(&menu_0_0));
 }
 
 TEST(MENU, MenuOnActionsSuccessfully)
@@ -67,9 +67,9 @@ TEST(MENU, MenuOnActionsSuccessfully)
   // simulate the operation
   // operations on the root
   pcur = &menu_0;
-  pcur->onNext(&pcur);
+  pcur->onRight(&pcur);
   POINTERS_EQUAL(&menu_0, pcur);
-  pcur->onPrev(&pcur);
+  pcur->onLeft(&pcur);
   POINTERS_EQUAL(&menu_0, pcur);
   pcur->onUp(&pcur);
   POINTERS_EQUAL(&menu_0, pcur);
@@ -77,13 +77,13 @@ TEST(MENU, MenuOnActionsSuccessfully)
   POINTERS_EQUAL(&menu_0_0, pcur);
 
   // operations on the second level menu
-  pcur->onPrev(&pcur);
+  pcur->onLeft(&pcur);
   POINTERS_EQUAL(&menu_0_0, pcur);
-  pcur->onNext(&pcur);
+  pcur->onRight(&pcur);
   POINTERS_EQUAL(&menu_0_1, pcur);
-  pcur->onNext(&pcur);
+  pcur->onRight(&pcur);
   POINTERS_EQUAL(&menu_0_1, pcur);
-  pcur->onPrev(&pcur);
+  pcur->onLeft(&pcur);
   POINTERS_EQUAL(&menu_0_0, pcur);
   pcur->onUp(&pcur);
   POINTERS_EQUAL(&menu_0, pcur);

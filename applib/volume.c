@@ -11,12 +11,12 @@ volume_t volumeRead(void)
   return g_volume;
 }
 
-volume_t volumeNext(void)
+volume_t volumeRight(void)
 {
   return (g_volume == VOLUME_MAX) ? VOLUME_MAX : ++g_volume;
 }
 
-volume_t volumePrev(void)
+volume_t volumeLeft(void)
 {
 return (g_volume == VOLUME_MIN) ? VOLUME_MIN : --g_volume;
 }

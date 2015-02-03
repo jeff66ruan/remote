@@ -20,16 +20,16 @@ typedef bool opmode_t;
 extern opmode_t opmodeRead(void);
 
 /**
- * It turns on or off operation mode to next mode
+ * It turns on or off operation mode to right mode
  * @return the new operation mode value
  */
-extern opmode_t opmodeNext(void);
+extern opmode_t opmodeRight(void);
 
 /**
- * It turns on or off operation mode to next mode
+ * It turns on or off operation mode to right mode
  * @return the new operation mode value
  */
-extern opmode_t opmodePrev(void);
+extern opmode_t opmodeLeft(void);
 
 /**
  * It resets operation mode value to the default

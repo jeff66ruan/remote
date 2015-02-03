@@ -26,14 +26,14 @@ TEST(REMOTECONTROLMENU, MovingOnRemoteControlMenuSuccessfully)
   remoteControlMenuInit();
   remoteControlMenuDisplay();
 
-  // move to next menu node
+  // move to right menu node
   cur = remoteControlMenuCurrent();
-  remoteControlMenuNext();
-  POINTERS_EQUAL(menuNext(cur), remoteControlMenuCurrent());
+  remoteControlMenuRight();
+  POINTERS_EQUAL(menuRight(cur), remoteControlMenuCurrent());
   remoteControlMenuDisplay();
 
   // move back to original menu node
-  remoteControlMenuPrev();
+  remoteControlMenuLeft();
   POINTERS_EQUAL(cur, remoteControlMenuCurrent());
 
   // move to the action node of volume
@@ -51,9 +51,9 @@ TEST(REMOTECONTROLMENU, VolumeActionsOnRemoteControlMenuIsDoneSuccessfully)
   remoteControlMenuDisplay();
 
   volumeReset();
-  remoteControlMenuNext();
+  remoteControlMenuRight();
   LONGS_EQUAL(11, volumeRead());
-  remoteControlMenuPrev();
+  remoteControlMenuLeft();
   LONGS_EQUAL(10, volumeRead());
 }
 
@@ -62,14 +62,14 @@ TEST(REMOTECONTROLMENU, BrightActionsOnRemoteControlMenuIsDoneSuccessfully)
   remoteControlMenuInit();
 
   // move to the action node of brightness
-  remoteControlMenuNext();
+  remoteControlMenuRight();
   remoteControlMenuDown();
   remoteControlMenuDisplay();
 
   brightReset();
-  remoteControlMenuNext();
+  remoteControlMenuRight();
   LONGS_EQUAL(51, brightRead());
-  remoteControlMenuPrev();
+  remoteControlMenuLeft();
   LONGS_EQUAL(50, brightRead());
 }
 
@@ -78,15 +78,15 @@ TEST(REMOTECONTROLMENU, ChannelActionsOnRemoteControlMenuIsDoneSuccessfully)
   remoteControlMenuInit();
 
   // move to the action node of brightness
-  remoteControlMenuNext();
-  remoteControlMenuNext();
+  remoteControlMenuRight();
+  remoteControlMenuRight();
   remoteControlMenuDown();
   remoteControlMenuDisplay();
 
   channelReset();
-  remoteControlMenuNext();
+  remoteControlMenuRight();
   LONGS_EQUAL(4, channelRead());
-  remoteControlMenuPrev();
+  remoteControlMenuLeft();
   LONGS_EQUAL(3, channelRead());
 }
 
@@ -95,15 +95,15 @@ TEST(REMOTECONTROLMENU, OpModeActionsOnRemoteControlMenuIsDoneSuccessfully)
   remoteControlMenuInit();
 
   // move to the action node of operating mode
-  remoteControlMenuNext();
-  remoteControlMenuNext();
-  remoteControlMenuNext();
+  remoteControlMenuRight();
+  remoteControlMenuRight();
+  remoteControlMenuRight();
   remoteControlMenuDown();
   remoteControlMenuDisplay();
 
   opmodeReset();
-  remoteControlMenuNext();
+  remoteControlMenuRight();
   CHECK(opmodeRead());
-  remoteControlMenuPrev();
+  remoteControlMenuLeft();
   CHECK(!opmodeRead());
 }

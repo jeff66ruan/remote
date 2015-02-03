@@ -11,12 +11,12 @@ bright_t brightRead(void)
   return g_bright;
 }
 
-bright_t brightNext(void)
+bright_t brightRight(void)
 {
   return (g_bright == BRIGHT_MAX) ? BRIGHT_MAX : ++g_bright;
 }
 
-bright_t brightPrev(void)
+bright_t brightLeft(void)
 {
 return (g_bright == BRIGHT_MIN) ? BRIGHT_MIN : --g_bright;
 }

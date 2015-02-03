@@ -13,9 +13,9 @@
 
 typedef struct menu_type {
   const char *text;
-  struct menu_type *parent, *child, *next, *prev;
-  void (*onNext)(struct menu_type** menu);
-  void (*onPrev)(struct menu_type** menu);
+  struct menu_type *parent, *child, *right, *left;
+  void (*onRight)(struct menu_type** menu);
+  void (*onLeft)(struct menu_type** menu);
   void (*onUp)(struct menu_type** menu);
   void (*onDown)(struct menu_type** menu);
   void (*onDisplay)(struct menu_type* menu);
@@ -60,19 +60,19 @@ extern menu_t*  menuChild(menu_t *menu);
 extern menu_t*  menuParent(menu_t *menu);
 
 /**
- * It returns the pointer of the input menu node's next sibling menu node
+ * It returns the pointer of the input menu node's right sibling menu node
  * @param menu the input menu node
- * @return the pointer of the input menu node's next sibling menu node,
- * NULL if the input menu node hasn't a next sibling
+ * @return the pointer of the input menu node's right sibling menu node,
+ * NULL if the input menu node hasn't a right sibling
  */
-extern menu_t*  menuNext(menu_t *menu);
+extern menu_t*  menuRight(menu_t *menu);
 
 /**
- * It returns the pointer of the input menu node's prev sibling menu node
+ * It returns the pointer of the input menu node's left sibling menu node
  * @param menu the input menu node
- * @return the pointer of the input menu node's prev sibling menu node,
- * NULL if the input menu node hasn't a prev sibling
+ * @return the pointer of the input menu node's left sibling menu node,
+ * NULL if the input menu node hasn't a left sibling
  */
-extern menu_t*  menuPrev(menu_t *menu);
+extern menu_t*  menuLeft(menu_t *menu);
 
 #endif

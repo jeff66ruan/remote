@@ -11,12 +11,12 @@ channel_t channelRead(void)
   return g_channel;
 }
 
-channel_t channelNext(void)
+channel_t channelRight(void)
 {
   return (g_channel == CHANNEL_MAX) ? CHANNEL_MAX : ++g_channel;
 }
 
-channel_t channelPrev(void)
+channel_t channelLeft(void)
 {
 return (g_channel == CHANNEL_MIN) ? CHANNEL_MIN : --g_channel;
 }

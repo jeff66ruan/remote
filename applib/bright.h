@@ -22,13 +22,13 @@ extern bright_t brightRead(void);
  * It increases current bright value
  * @return the new bright value
  */
-extern bright_t brightNext(void);
+extern bright_t brightRight(void);
 
 /**
  * It decreases current bright value
  * @return the new bright value
  */
-extern bright_t brightPrev(void);
+extern bright_t brightLeft(void);
 
 /**
  * It resets bright value to the default

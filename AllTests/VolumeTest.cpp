@@ -23,23 +23,23 @@ TEST(VOLUME, VolumeHasDefaultValue10)
 
 TEST(VOLUME, VolumeIsIncreasedbyOneSuccessfully)
 {
-  LONGS_EQUAL(11, volumeNext());
-  LONGS_EQUAL(12, volumeNext());
+  LONGS_EQUAL(11, volumeRight());
+  LONGS_EQUAL(12, volumeRight());
 }
 
 TEST(VOLUME, VolumeIsDecreasedbyOneSuccessfully)
 {
-  LONGS_EQUAL(9, volumePrev());
-  LONGS_EQUAL(8, volumePrev());
+  LONGS_EQUAL(9, volumeLeft());
+  LONGS_EQUAL(8, volumeLeft());
 }
 
 TEST(VOLUME, VolumeIsAlwaysInTheRangeOf0to40)
 {
   int i;
-  for (i = 0; i <100; i++) volumeNext();
+  for (i = 0; i <100; i++) volumeRight();
   LONGS_EQUAL(40, volumeRead());
 
 
-  for (i = 0; i <100; i++) volumePrev();
+  for (i = 0; i <100; i++) volumeLeft();
   LONGS_EQUAL(0, volumeRead());
 }

@@ -24,8 +24,8 @@ TEST(OPMODE, operationModeHasDefaultValueFalse)
 TEST(OPMODE, OperationModeIsTurnedOnAndOffSuccessfully)
 {
   LONGS_EQUAL(false, opmodeRead());
-  LONGS_EQUAL(true, opmodeNext());
-  LONGS_EQUAL(false, opmodeNext());
-  LONGS_EQUAL(true, opmodePrev());
-  LONGS_EQUAL(false, opmodePrev());
+  LONGS_EQUAL(true, opmodeRight());
+  LONGS_EQUAL(false, opmodeRight());
+  LONGS_EQUAL(true, opmodeLeft());
+  LONGS_EQUAL(false, opmodeLeft());
 }

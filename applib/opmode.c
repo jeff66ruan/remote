@@ -10,15 +10,15 @@ opmode_t opmodeRead(void)
   return g_opmode;
 }
 
-opmode_t opmodeNext(void)
+opmode_t opmodeRight(void)
 {
   g_opmode = !g_opmode;
   return g_opmode;
 }
 
-opmode_t opmodePrev(void)
+opmode_t opmodeLeft(void)
 {
-  return opmodeNext();
+  return opmodeRight();
 }
 
 opmode_t opmodeReset(void)

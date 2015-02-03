@@ -22,13 +22,13 @@ extern channel_t channelRead(void);
  * It increases current channel value
  * @return the new channel value
  */
-extern channel_t channelNext(void);
+extern channel_t channelRight(void);
 
 /**
  * It decreases current channel value
  * @return the new channel value
  */
-extern channel_t channelPrev(void);
+extern channel_t channelLeft(void);
 
 /**
  * It resets channel value to the default

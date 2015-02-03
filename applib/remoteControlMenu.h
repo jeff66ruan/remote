@@ -22,14 +22,14 @@ extern void remoteControlMenuInit(void);
 extern void remoteControlMenuDisplay(void);
 
 /**
- * It executes the current selected menu node's onNext action
+ * It executes the current selected menu node's onRight action
  */
-extern void remoteControlMenuNext(void);
+extern void remoteControlMenuRight(void);
 
 /**
- * It executes the current selected menu node's onPrev action
+ * It executes the current selected menu node's onLeft action
  */
-extern void remoteControlMenuPrev(void);
+extern void remoteControlMenuLeft(void);
 
 /**
  * It executes the current selected menu node's onDown action

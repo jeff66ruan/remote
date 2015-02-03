@@ -33,10 +33,10 @@ int main()
   while ((ch=buttonAction())) {
     switch(ch) {
     case BUTTON_LEFT:
-      remoteControlMenuPrev();
+      remoteControlMenuLeft();
       break;
     case BUTTON_RIGHT:
-      remoteControlMenuNext();
+      remoteControlMenuRight();
       break;
     case BUTTON_UP:
       remoteControlMenuUp();

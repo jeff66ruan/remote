@@ -23,13 +23,13 @@ extern volume_t volumeRead(void);
  * It increases current volume value
  * @return the new volume value
  */
-extern volume_t volumeNext(void);
+extern volume_t volumeRight(void);
 
 /**
  * It decreases current volume value
  * @return the new volume value
  */
-extern volume_t volumePrev(void);
+extern volume_t volumeLeft(void);
 
 /**
  * It resets volume value to the default
