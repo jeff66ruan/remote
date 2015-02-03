@@ -14,42 +14,43 @@
 #define BUTTON_DOWN 100         /* lowcase letter d */
 #define BUTTON_RETURN 10
 
+/* at the beginning I use four buttons in order to finish the whole
+   application framework. Changing back to two buttons shouldn't
+   affect underlining structure except the way of interpreting
+   button behaviours */
+static int buttonAction(void)
+{
+  return getchar();
+}
+
 int main()
 {
-  /* at the beginning I use four buttons in order to finish the whole
-     application framework. Changing back to two buttons shouldn't
-     affect underlining structure except the way of interpreting
-     button behaviours */
   char ch;
 
   remoteControlMenuInit();
   remoteControlMenuDisplay();
 
-  while ((ch=getchar())) {
+  while ((ch=buttonAction())) {
     switch(ch) {
     case BUTTON_LEFT:
       remoteControlMenuPrev();
-      remoteControlMenuDisplay();
       break;
     case BUTTON_RIGHT:
       remoteControlMenuNext();
-      remoteControlMenuDisplay();
       break;
     case BUTTON_UP:
       remoteControlMenuUp();
-      remoteControlMenuDisplay();
       break;
     case BUTTON_DOWN:
       remoteControlMenuDown();
-      remoteControlMenuDisplay();
       break;
     case BUTTON_RETURN:
-      break;
+      continue;   /* special here because don't want to display menu */
     default:
       printf("Invalid button\n");
-      remoteControlMenuDisplay();
       break;
     }
+    remoteControlMenuDisplay();
   }
   return 0;
 }
