@@ -6,6 +6,7 @@
  * */
 
 #include <stdio.h>
+#include "remoteControlMenu.h"
 
 #define BUTTON_LEFT 108         /* lowcase letter l */
 #define BUTTON_RIGHT 114        /* lowcase letter r */
@@ -20,24 +21,34 @@ int main()
      affect underlining structure except the way of interpreting
      button behaviours */
   char ch;
+
+  remoteControlMenuInit();
+  remoteControlMenuDisplay();
+
   while ((ch=getchar())) {
     switch(ch) {
     case BUTTON_LEFT:
-      printf("left is pressed\n");
+      remoteControlMenuPrev();
+      remoteControlMenuDisplay();
       break;
     case BUTTON_RIGHT:
-      printf("right is pressed\n");
+      remoteControlMenuNext();
+      remoteControlMenuDisplay();
       break;
     case BUTTON_UP:
-      printf("up is pressed\n");
+      remoteControlMenuUp();
+      remoteControlMenuDisplay();
       break;
     case BUTTON_DOWN:
-      printf("down is pressed\n");
+      remoteControlMenuDown();
+      remoteControlMenuDisplay();
       break;
     case BUTTON_RETURN:
       break;
-    default:;
-      printf("else %d is pressed\n", ch);
+    default:
+      printf("Invalid button\n");
+      remoteControlMenuDisplay();
+      break;
     }
   }
   return 0;

@@ -57,7 +57,7 @@ void remoteControlMenuInit(void)
   /* volume */
   menuInit(&levelOne[0], "Volume - 0 to 40");
   menuInsertChildTail(&root, &levelOne[0]);
-  menuInit(&actions[0], "Press Up and Down to Change Volume");
+  menuInit(&actions[0], "Press Left and Right to Change Volume");
   actions[0].onNext = volumeActionOnNext;
   actions[0].onPrev = volumeActionOnPrev;
   menuInsertChildTail(&levelOne[0], &actions[0]);
@@ -65,7 +65,7 @@ void remoteControlMenuInit(void)
   /* operation mode */
   menuInit(&levelOne[1], "Operating mode - On/Standby");
   menuInsertChildTail(&root, &levelOne[1]);
-  menuInit(&actions[1], "Press Up and Down to Change Operating mode");
+  menuInit(&actions[1], "Press Left and Right to Change Operating mode");
   actions[1].onNext = opmodeActionOnNext;
   actions[1].onPrev = opmodeActionOnPrev;
   menuInsertChildTail(&levelOne[1], &actions[1]);
@@ -81,16 +81,18 @@ static menu_t* remoteControlMenuFirst(menu_t *menu)
 
 void remoteControlMenuDisplay(void)
 {
+  printf("\n\n");
   menu_t *iter = remoteControlMenuFirst(pcurMenu);
   while(iter) {
     if (iter != pcurMenu) {
-      printf("    ");
+      printf("   ");
     } else {
-      printf(" -> ");
+      printf("-> ");
     }
     iter->onDisplay(iter);
     iter = iter->next;
   }
+  printf("Press the button: ");
 }
 
 void remoteControlMenuNext(void)
