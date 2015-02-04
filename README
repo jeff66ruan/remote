@@ -1,0 +1,16 @@
+Overview
+--------
+remote UI: cli
+others: applib
+
+Compilation
+-----------
+It depends on cpputest and its makefile template.
+1. set up cpputest according to http://cpputest.github.io
+2. change CPPUTEST_HOME in Makefile
+3. make
+4. cd cli;make clean;make
+
+run
+---
+cli/remote
